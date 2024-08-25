@@ -1,0 +1,24 @@
+command /bedclutch [<text>] [<text>] [<text>]:
+    aliases: /bc
+    trigger:
+        if arg 1 is "join":
+            if {bedclutch.%player%} is set:
+                send "%{config.prefix}% &cYou are already playing!"
+            else:
+                set {bedclutch.%player%} to true
+                teleport player to {bedclutch.pos.spawn}
+                send "%{config.prefix}% &aWelcome to BedClutch!"
+                setInv(player)
+        if arg 1 is "leave":
+        if arg 1 is "admin":
+        if arg 1 is not set:
+            send "%{config.prefix}% &bAvailable Commands:"
+            send "%{config.prefix}% &a/bedclutch <join/leave>"
+
+#todo add multi map system
+#todo add leveling system
+#todo add coins
+#todo add personal and global quests
+#todo check if player landed a clutch -> give exp and coins
+
+#todo make the server bedclutch.com on some hosting, maybe creepercloud

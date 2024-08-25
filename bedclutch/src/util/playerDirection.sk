@@ -1,0 +1,78 @@
+function checkDiag(p: player) :: text:
+    set {_yaw} to yaw of {_p}'s location
+    set {_rotation} to {_yaw} - 180
+    if {_rotation} < 0:
+        add 360 to {_rotation}
+    if {_rotation} >= 360:
+        subtract 360 from {_rotation}
+    if {_rotation} >= 0:
+        if {_rotation} < 90:
+            return "NE"
+            stop
+    if {_rotation} >= 90:
+        if {_rotation} < 180:
+            return "SE"
+            stop
+    if {_rotation} >= 180:
+        if {_rotation} < 270:
+            return "SW"
+            stop
+    if {_rotation} >= 270:
+        if {_rotation} < 360:
+            return "NW"
+            stop
+    else:
+        return "Unknown"
+
+function checkStraight(p: player) :: text:
+    set {_yaw} to yaw of {_p}'s location
+    set {_rotation} to {_yaw} - 180
+    if {_rotation} < 0:
+        add 360 to {_rotation}
+    if {_rotation} >= 360:
+        subtract 360 from {_rotation}
+    if {_rotation} >= 0:
+        if {_rotation} < 45:
+            return "N"
+            stop
+    if {_rotation} >= 45:
+        if {_rotation} < 135:
+            return "E"
+            stop
+    if {_rotation} >= 135:
+        if {_rotation} < 225:
+            return "S"
+            stop
+    if {_rotation} >= 225:
+        if {_rotation} < 315:
+            return "W"
+            stop
+    if {_rotation} >= 315:
+        if {_rotation} < 360:
+            return "N"
+            stop
+    else:
+        return "Unknown"
+
+function getVectorDiag(p: player, x: number, y: number, z: number) :: vector:
+    set {_dir} to checkDiag({_p})
+    if {_dir} = "NW":
+        return vector({_x}, {_y}, {_z})
+    if {_dir} = "NE":
+        return vector(({_x}-(2*{_x})), {_y}, {_z})
+    if {_dir} = "SE":
+        return vector(({_x}-(2*{_x})), {_y}, ({_z}-(2*{_z})))
+    if {_dir} = "SW":
+        return vector({_x}, {_y}, ({_z}-(2*{_z})))
+
+# why the actual fuck does skript not understand '-{var}' like wtf i need to manually make a var negative, fuck you skript
+function getVectorStraight(p: player, x: number, y: number) :: vector:
+    set {_dir} to checkStraight({_p})
+    if {_dir} = "N":
+        return vector(0.0, {_y}, {_x})
+    if {_dir} = "S":
+        return vector(0.0, {_y}, ({_x}-(2*{_x})))
+    if {_dir} = "E":
+        return vector(({_x}-(2*{_x})), {_y}, 0.0)
+    if {_dir} = "W":
+        return vector({_x}, {_y}, 0.0)

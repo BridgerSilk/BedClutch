@@ -1,0 +1,23 @@
+function clutch(p: player, clutchid: number, hits: number, type: text, clutchname: text, x: number, y: number, z: number):
+    if {bedclutch.%{_p}%} is not set:
+        close {_p}'s inventory
+        set {bedclutch.%{_p}%.lastclutch} to {_clutchid}
+        wait 1 second
+        send title "&e%{_clutchname}% &7• &a&l3" to {_p}
+        wait 1 second
+        send title "&e%{_clutchname}% &7• &6&l2" to {_p}
+        wait 1 second
+        send title "&e%{_clutchname}% &7• &c&l1" to {_p} for 1 second
+        wait 1 second
+        if {_type} = "normal":
+            loop {_hits} times:
+                set {_p}'s velocity to getVectorStraight({_p}, {_x}, {_y})
+                if {bedclutch.%{_p}%.hitrotation} is true:
+                    damage {_p} by 0
+                wait 10 ticks
+        if {_type} = "diag":
+            loop {_hits} times:
+                set {_p}'s velocity to getVectorDiag({_p}, {_x}, {_y}, {_z})
+                if {bedclutch.%{_p}%.hitrotation} is true:
+                    damage {_p} by 0
+                wait 10 ticks

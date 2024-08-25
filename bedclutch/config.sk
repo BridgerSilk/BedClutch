@@ -1,0 +1,15 @@
+# ----------------------------------------------------------------------------
+# Old Bedclutch aka Voidclutch Practice Gamemode from bridgersilk.tk recoded
+# (Inspired by the bedclutch gamemode from mc.quadflame.com)
+# ----------------------------------------------------------------------------
+# DO NOT RE-SELL OR DISTRIBUTE WITHOUT PERMISSION
+# ----------------------------------------------------------------------------
+
+# -----------------------------------
+# BedClutch Version 1.0
+# Skript Version 2.6 (skript-1.8)
+# -----------------------------------
+variables:
+
+    # the prefix used for all messages of bedclutch
+    {config.prefix} = "&d&lBedClutch &7>>"
